@@ -3,20 +3,19 @@ import json
 from django.http import JsonResponse , HttpResponse
 from colorama import Fore, Style # for good experience in command line
 import datetime
-unfiltered_data={}
-def jsontodict(unfiltered_data):
-    unfiltered_data = json.loads(unfiltered_data)
-    return unfiltered_data
-#call this function for sending realtime data
-def to_react(request):
-    return JsonResponse(jsontodict(unfiltered_data),safe=True)#change safe = True if the data is a dictionary
+jsondata={}
+def clean(jsondata):
+    temp=json.loads(jsondata)
+    clean_data={"windspeed":temp['windspd'],"tempout":temp["tempout"],"tempin":temp["tempin"],"winddir":temp["winddir"],"bar":temp["bar"]}
+    return clean_data
+#API function
+def api(request):
+    return JsonResponse(clean(jsondata),safe=True)#change safe = True if the data is a dictionary
 #call this function whenever the message is recieved
 def on_message(client, userdata,message):
-    global unfiltered_data
-    unfiltered_data =message.payload
-    unfiltered_data=unfiltered_data.decode('utf-8')
-    #filter the unfiltered data and connect to databases in v0.1.1
-    #filtered_data = unfiltered_data - useless
+    global jsondata
+    jsondata =message.payload
+    jsondata=jsondata.decode('utf-8')
     now = datetime.datetime.now()
     print(Fore.GREEN+"Got a message in the topic : "+message.topic+" at"+now.strftime(" %H:%M:%S")+Style.RESET_ALL)
     #print(Fore.YELLOW+unfiltered_data+Style.RESET_ALL)
@@ -26,7 +25,6 @@ def on_message(client, userdata,message):
 try:
     #mosquitto_sub -h 192.168.29.79 -v -t weatherwflexp.json -p 1884 -u clan4 -P clan4 > data.txt
     client = mqtt.Client()
-    #client.on_message = on_message
     client.username_pw_set("clan4", "clan4")
     client.connect("192.168.29.79", 1884, 10)
     client.subscribe("weatherwflexp.json", 0)
