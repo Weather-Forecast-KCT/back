@@ -1,12 +1,21 @@
 import paho.mqtt.client as mqtt
 import json
-from django.http import JsonResponse , HttpResponse
+from django.http import JsonResponse 
 from colorama import Fore, Style # for good experience in command line
 import datetime
 jsondata={}
 def clean(jsondata):
     temp=json.loads(jsondata)
-    clean_data={"windspeed":temp['windspd'],"tempout":temp["tempout"],"tempin":temp["tempin"],"winddir":temp["winddir"],"bar":temp["bar"]}
+    clean_data={"tempin":temp["tempin"],
+                "tempout":temp["tempout"],
+                "humidity":temp["humout"],
+                "windspeed":temp['windspd'],
+                "winddir":temp["winddir"],
+                "rainrate":temp["rainr"],
+                "dew":temp["dew"],
+                "uv":temp["uv"],
+                "icon":"11d"
+                }
     return clean_data
 #API function
 def api(request):
