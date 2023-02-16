@@ -2,6 +2,7 @@ import paho.mqtt.client as mqtt
 import json
 from django.http import JsonResponse , HttpResponse
 from colorama import Fore, Style # for good experience in command line
+import datetime
 unfiltered_data={}
 def jsontodict(unfiltered_data):
     unfiltered_data = json.loads(unfiltered_data)
@@ -16,7 +17,8 @@ def on_message(client, userdata,message):
     unfiltered_data=unfiltered_data.decode('utf-8')
     #filter the unfiltered data and connect to databases in v0.1.1
     #filtered_data = unfiltered_data - useless
-    print(Fore.GREEN+"Got a message in the topic : "+message.topic+Style.RESET_ALL)
+    now = datetime.datetime.now()
+    print(Fore.GREEN+"Got a message in the topic : "+message.topic+" at"+now.strftime(" %H:%M:%S")+Style.RESET_ALL)
     #print(Fore.YELLOW+unfiltered_data+Style.RESET_ALL)
     
 
