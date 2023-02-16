@@ -5,7 +5,7 @@ from colorama import Fore, Style # for good experience in command line
 unfiltered_data={}
 #call this function for sending realtime data
 def to_react(request):
-    return JsonResponse(unfiltered_data,safe=False)#change safe = True if the data is a dictionary
+    return JsonResponse(unfiltered_data,safe=True)#change safe = True if the data is a dictionary
 #call this function whenever the message is recieved
 def on_message(client, userdata,message):
     global unfiltered_data
@@ -27,6 +27,7 @@ try:
     print(Fore.GREEN+"Successfully subscribed to MQTT server"+Style.RESET_ALL)
     client.loop_start()
     client.on_message = on_message
+   
     
     
 except:
