@@ -1,25 +1,12 @@
 import paho.mqtt.client as mqtt
-import json
 from django.http import JsonResponse 
 from colorama import Fore, Style # for good experience in command line
 import datetime
+from . import fn
 jsondata={}
-def clean(jsondata):
-    temp=json.loads(jsondata)
-    clean_data={"tempin":temp["tempin"],
-                "tempout":temp["tempout"],
-                "humidity":temp["humout"],
-                "windspeed":temp['windspd'],
-                "winddir":temp["winddir"],
-                "rainrate":temp["rainr"],
-                "dew":temp["dew"],
-                "uv":temp["uv"],
-                "icon":"11d"
-                }
-    return clean_data
 #API function
 def api(request):
-    return JsonResponse(clean(jsondata),safe=True)#change safe = True if the data is a dictionary
+    return JsonResponse(fn.clean(jsondata),safe=True)#change safe = True if the data is a dictionary
 #call this function whenever the message is recieved
 def on_message(client, userdata,message):
     global jsondata
@@ -27,6 +14,7 @@ def on_message(client, userdata,message):
     jsondata=jsondata.decode('utf-8')
     now = datetime.datetime.now()
     print(Fore.GREEN+"Got a message in the topic : "+message.topic+" at"+now.strftime(" %H:%M:%S")+Style.RESET_ALL)
+    #print(Fore.YELLOW+str(fn.clean(jsondata))+Style.RESET_ALL)
     #print(Fore.YELLOW+unfiltered_data+Style.RESET_ALL)
     
 
