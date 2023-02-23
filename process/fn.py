@@ -96,6 +96,8 @@ def clean(jsondata):
                 }
     
     for key, value in clean_data.items():
+        if key=="chart":
+            continue
         try:
             clean_data[key] =float(value)
         except:
