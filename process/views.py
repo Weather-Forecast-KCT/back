@@ -38,7 +38,7 @@ try:
 except:
     print(Fore.RED+"Error connecting to MQTT Broker")
     print("Please check the MQTT Broker and try again"+Style.RESET_ALL)
-    exit()
+    #exit()
 
 #store past 5 second values of fn.clean(jsondata) and an api to send it
 import time
