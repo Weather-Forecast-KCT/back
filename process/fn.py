@@ -42,7 +42,8 @@ def temp_desc(temperature, humidity, dew,rain_rate,wind_speed):
     else:
         return "clear sky",suff("01")
 def clean(jsondata):
-    temp=json.loads(jsondata)
+    #temp=json.loads(jsondata)
+    temp=jsondata
     clean_data={"tempin":farenheit_to_celcius(temp["tempin"]),
                 "tempout":farenheit_to_celcius(temp["tempout"]),
                 "humidity":temp["humout"],
