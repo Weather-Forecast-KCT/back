@@ -65,14 +65,14 @@ def clean(jsondata):
     'windSpeed': 33
   },
   {
-    id: 2,
+    'id': 2,
     'day': 'Tuesday',
     'temperature': 30,
     'humidity': 29,
     'windSpeed': 31
   },
   {
-    id: 3,
+    'id': 3,
     'day': 'Wednesday',
     'temperature': 31,
     'humidity': 30,
