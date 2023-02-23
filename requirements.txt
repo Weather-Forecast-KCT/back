@@ -2,4 +2,3 @@ paho-mqtt
 django
 djangorestframework
 colorama
-json
