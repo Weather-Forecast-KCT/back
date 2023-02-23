@@ -1,0 +1,7 @@
+paho-mqtt
+django
+djangorestframework
+colorama
+datetime
+collections
+json

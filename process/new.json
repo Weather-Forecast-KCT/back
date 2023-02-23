@@ -1,0 +1,15 @@
+{"tempin":[
+    {"timestamp": 1676959631, "value": 29.4}, 
+    {"timestamp": 1676959632, "value": 29.4}, 
+    {"timestamp": 1676959632, "value": 29.4}, 
+    {"timestamp": 1676959632, "value": 29.4}, 
+    {"timestamp": 1676959632, "value": 29.4}
+], 
+"tempout": [
+    {"timestamp": 1676959631, "value": 29.9}, 
+    {"timestamp": 1676959632, "value": 29.9}, 
+    {"timestamp": 1676959632, "value": 29.9}, 
+    {"timestamp": 1676959632, "value": 29.9}, 
+    {"timestamp": 1676959632, "value": 29.9}
+], 
+"humidity": [{"timestamp": 1676959631, "value": 43.0}, {"timestamp": 1676959632, "value": 43.0}, {"timestamp": 1676959632, "value": 43.0}, {"timestamp": 1676959632, "value": 43.0}, {"timestamp": 1676959632, "value": 43.0}], "windspeed": [{"timestamp": 1676959631, "value": 0.0}, {"timestamp": 1676959632, "value": 0.0}, {"timestamp": 1676959632, "value": 0.0}, {"timestamp": 1676959632, "value": 0.0}, {"timestamp": 1676959632, "value": 0.0}], "winddir": [{"timestamp": 1676959631, "value": 284.0}, {"timestamp": 1676959632, "value": 284.0}, {"timestamp": 1676959632, "value": 284.0}, {"timestamp": 1676959632, "value": 284.0}, {"timestamp": 1676959632, "value": 284.0}], "rainrate": [{"timestamp": 1676959631, "value": 0.0}, {"timestamp": 1676959632, "value": 0.0}, {"timestamp": 1676959632, "value": 0.0}, {"timestamp": 1676959632, "value": 0.0}, {"timestamp": 1676959632, "value": 0.0}], "dew": [{"timestamp": 1676959631, "value": 61.0}, {"timestamp": 1676959632, "value": 61.0}, {"timestamp": 1676959632, "value": 61.0}, {"timestamp": 1676959632, "value": 61.0}, {"timestamp": 1676959632, "value": 61.0}], "uv": [{"timestamp": 1676959631, "value": 0}, {"timestamp": 1676959632, "value": 0}, {"timestamp": 1676959632, "value": 0}, {"timestamp": 1676959632, "value": 0}, {"timestamp": 1676959632, "value": 0}], "heat": [{"timestamp": 1676959631, "value": 86.0}, {"timestamp": 1676959632, "value": 86.0}, {"timestamp": 1676959632, "value": 86.0}, {"timestamp": 1676959632, "value": 86.0}, {"timestamp": 1676959632, "value": 86.0}], "icon": [{"timestamp": 1676959631, "value": "01d"}, {"timestamp": 1676959632, "value": "01d"}, {"timestamp": 1676959632, "value": "01d"}, {"timestamp": 1676959632, "value": "01d"}, {"timestamp": 1676959632, "value": "01d"}], "desc": [{"timestamp": 1676959631, "value": "clear sky"}, {"timestamp": 1676959632, "value": "clear sky"}, {"timestamp": 1676959632, "value": "clear sky"}, {"timestamp": 1676959632, "value": "clear sky"}, {"timestamp": 1676959632, "value": "clear sky"}]}
