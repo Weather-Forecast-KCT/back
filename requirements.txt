@@ -2,4 +2,4 @@ paho-mqtt
 django
 djangorestframework
 colorama
-corsheaders
+django-cors-headers
