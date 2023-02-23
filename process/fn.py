@@ -55,7 +55,44 @@ def clean(jsondata):
                 "uv":temp["uv"],
                 "heat":temp["heat"],
                 "icon":"",
-                "desc":""
+                "desc":"",
+                "chart":[
+  {
+    'id': 1,
+    'day': 'Monday',
+    'temperature': 32,
+    'humidity': 31,
+    'windSpeed': 33
+  },
+  {
+    id: 2,
+    'day': 'Tuesday',
+    'temperature': 30,
+    'humidity': 29,
+    'windSpeed': 31
+  },
+  {
+    id: 3,
+    'day': 'Wednesday',
+    'temperature': 31,
+    'humidity': 30,
+    'windSpeed': 32
+  },
+  {
+    'id': 4,
+    'day': 'Thursday',
+    'temperature': 29,
+    'humidity': 28,
+    'windSpeed': 30
+  },
+  {
+    'id': 5,
+    'day': 'Friday',
+    'temperature': 30,
+    'humidity': 29,
+    'windSpeed': 31
+  },
+],
                 }
     
     for key, value in clean_data.items():
@@ -64,4 +101,6 @@ def clean(jsondata):
         except:
             clean_data[key] = 0
     clean_data["desc"],clean_data["icon"]=temp_desc(float(clean_data["tempout"]),float(clean_data["humidity"]),float(clean_data["dew"]),float(clean_data["rainrate"]),float(clean_data['windspeed']))
+    #temporary data for chart
+    
     return clean_data
