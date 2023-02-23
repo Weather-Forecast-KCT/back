@@ -7,9 +7,10 @@ name = "pypi"
 django = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
-
+colorama="*"
+paho-mqtt="*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.11"
+python_version = "3.9"
