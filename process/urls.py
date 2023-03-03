@@ -3,6 +3,6 @@ from . import views
 
 urlpatterns = [
     path('api', views.api),#api bro
-    path('live_data.json', views.live_data),#live data bro
-    path('chart', views.chart),#chart bro
+    path('chart', views.dailychart),#chart bro
+    path('live',views.live),#past 1 min data
     ]
