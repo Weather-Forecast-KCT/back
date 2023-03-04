@@ -3,3 +3,4 @@ Django==4.1.7
 djangorestframework==3.14.0
 colorama
 django-cors-headers
+apscheduler

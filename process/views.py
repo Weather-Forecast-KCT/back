@@ -22,7 +22,7 @@ def live(request):
     return JsonResponse(fn.chart60(past1min))
 
 #a def to save tempin value of jsondata 4 times a day in a csv file
-def store():
+'''def store():
     global jsondata
     now = datetime.datetime.now()
     filename = now.strftime("%d-%m-%Y") + ".csv"
@@ -35,7 +35,7 @@ def store():
         writer = csv.writer(file)
         writer.writerow([now.strftime("%H:%M:%S")] + list(fn.clean(jsondata).values()))
     print(Fore.GREEN+"Saved tempin value at "+now.strftime("%d/%m/%Y %H:%M:%S")+Style.RESET_ALL)
-    threading.Timer(60, store).start()
+    threading.Timer(60, store).start()'''
 
 
 
@@ -53,7 +53,7 @@ def on_message(client, userdata,message):
         del past1min[min(past1min.keys())]
     
 
-store()
+#store()
 #this part Subscribes to the MQTT Broker . This happens only one time one the first boot . If it can't connect to mqtt it will show error on console
 try:
     #mosquitto_sub -h 192.168.29.79 -v -t weatherwflexp.json -p 1884 -u clan4 -P clan4 > data.txt
