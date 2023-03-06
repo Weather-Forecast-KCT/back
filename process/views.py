@@ -49,8 +49,8 @@ def on_message(client, userdata,message):
     now = datetime.datetime.now()
     print(Fore.GREEN+"Got a message in the topic : "+message.topic+" at"+now.strftime(" %H:%M:%S")+Style.RESET_ALL)
     #write currect clean json in a data.json so that we can use it in manage.py to store data in date.csv
-    with open("data.json", "w") as f:
-        json.dump((fn.clean(jsondata)), f, indent=4)
+    '''with open("data.json", "w") as f:
+        json.dump((fn.clean(jsondata)), f, indent=4)'''
     #print(Fore.YELLOW+str(fn.clean(jsondata))+Style.RESET_ALL)
     #print(Fore.YELLOW+unfiltered_data+Style.RESET_ALL)
     past1min[time.time()] = fn.clean(jsondata)
