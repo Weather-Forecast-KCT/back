@@ -66,6 +66,7 @@ try:
     #client.username_pw_set("clan4", "clan4")
     client.connect("broker.hivemq.com", 1883, 10)
     client.subscribe("weatherwflexp.json", 0)
+    client.enable_logger()
     print(Fore.GREEN+"Successfully subscribed to MQTT server"+Style.RESET_ALL)
     client.loop_start()
     client.on_message = on_message
