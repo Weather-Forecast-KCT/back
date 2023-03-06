@@ -1,0 +1,13 @@
+{
+    "tempin": 29.5,
+    "tempout": 31.3,
+    "humidity": 22.0,
+    "windspeed": 3.0,
+    "winddir": 103.0,
+    "rainrate": 0.0,
+    "dew": 45.0,
+    "uv": 0,
+    "heat": 86.0,
+    "icon": "01d",
+    "desc": "clear sky"
+}

@@ -7,6 +7,8 @@ import datetime
 import csv
 from colorama import Fore, Style
 from apscheduler.schedulers.background import BackgroundScheduler
+import fn
+import json
 
 
 def main():
@@ -25,21 +27,30 @@ def main():
 jsondata = {}
 
 def store():
-    global jsondata
+    #open temp.json and convert json to dict
+    try:
+        with open("data.json") as F:
+            data = json.load(F)
+    except:
+        print(Fore.RED+"Error in opening data.json"+Style.RESET_ALL)
+        return
     now = datetime.datetime.now()
-    filename = now.strftime("%d-%m-%Y") + ".csv"
-    if not os.path.isfile(filename):
-        with open(filename, 'w', newline='') as file:
+    try:
+        filename = now.strftime("Daily/"+"%d-%m-%Y") + ".csv"
+        if not os.path.isfile(filename):
+            with open(filename, 'w', newline='') as file:
+                writer = csv.writer(file)
+                temp=["Time","tempin", "tempout", "humidity", "windspeed", "winddir", "rainrate", "dew", "uv", "heat", "icon", "desc"]
+                writer.writerow(temp)
+        with open(filename, 'a', newline='') as file:
             writer = csv.writer(file)
-            temp=["Time","tempin", "tempout", "humidity", "windspeed", "winddir", "rainrate", "dew", "uv", "heat", "icon", "desc"]
-            writer.writerow(temp)
-    with open(filename, 'a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([now.strftime("%H:%M:%S")] + list(jsondata.values()))
-    print(Fore.GREEN+"Saved tempin value at "+now.strftime("%d/%m/%Y %H:%M:%S")+Style.RESET_ALL)
+            writer.writerow([now.strftime("%H:%M:%S")] + list(data.values()))
+        print(Fore.GREEN+"Saved tempin value at "+now.strftime("%d/%m/%Y %H:%M:%S")+Style.RESET_ALL)
+    except:
+        print(Fore.RED+"Error in writing to csv file"+Style.RESET_ALL)
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(store, 'interval', seconds=1)
+scheduler.add_job(store, 'interval', seconds=60)
 
 if __name__ == '__main__':
     scheduler.start()
