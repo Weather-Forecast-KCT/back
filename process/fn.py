@@ -50,7 +50,7 @@ def clean(jsondata):
                 "humidity":temp["humout"],
                 "windspeed":temp['windspd'],
                 "winddir":temp["winddir"],
-                "rainrate":temp["rainr"],
+                "rainrate":temp["rainyear"],
                 "dew":temp["dew"],
                 "uv":temp["uv"],
                 "heat":temp["heat"],
@@ -61,6 +61,9 @@ def clean(jsondata):
     for key, value in clean_data.items():
         try:
             clean_data[key] =float(value)
+            #change windspeed from mph to kmph with 2 decimal points
+            if key == "windspeed":
+                clean_data[key] = float("{:.1f}".format(clean_data[key]*1.60934))
         except:
             clean_data[key] = 0
     clean_data["desc"],clean_data["icon"]=temp_desc(float(clean_data["tempout"]),float(clean_data["humidity"]),float(clean_data["dew"]),float(clean_data["rainrate"]),float(clean_data['windspeed']))

@@ -1,9 +1,11 @@
 import paho.mqtt.client as mqtt
 from django.http import JsonResponse , HttpResponse
+from django.shortcuts import render
 from colorama import Fore, Style # for good experience in command line
 import datetime
 from . import fn
 from collections import defaultdict
+
 import time
 import csv,os
 import threading
@@ -48,19 +50,19 @@ def on_message(client, userdata,message):
     now = datetime.datetime.now()
     print(Fore.GREEN+"Got a message in the topic : "+message.topic+" at"+now.strftime(" %H:%M:%S")+Style.RESET_ALL)
     #write currect clean json in a data.json so that we can use it in manage.py to store data in date.csv
-    '''with open("data.json", "w") as f:
-        json.dump((fn.clean(jsondata)), f, indent=4)'''
+    with open("data.json", "w") as f:
+        json.dump((fn.clean(jsondata)), f, indent=4)
     #print(Fore.YELLOW+str(fn.clean(jsondata))+Style.RESET_ALL)
     #print(Fore.YELLOW+unfiltered_data+Style.RESET_ALL)
-    past1min[time.time()] = fn.clean(jsondata)
+    '''past1min[time.time()] = fn.clean(jsondata)
     if len(past1min)>60:
-        del past1min[min(past1min.keys())]
+        del past1min[min(past1min.keys())]'''
     
 
 #store()
 #this part Subscribes to the MQTT Broker . This happens only one time one the first boot . If it can't connect to mqtt it will show error on console
 try:
-    #mosquitto_sub -h 192.168.29.79 -v -t weatherwflexp.json -p 1884 -u clan4 -P clan4 > data.txt
+    #mosquitto_sub -h <i.p> -v -t weatherwflexp.json -p 1884 -u clan4 -P clan4 > data.txt
     client = mqtt.Client()
     #client.username_pw_set("clan4", "clan4")
     client.connect("broker.hivemq.com", 1883, 10)
@@ -69,26 +71,12 @@ try:
     print(Fore.GREEN+"Successfully subscribed to MQTT server"+Style.RESET_ALL)
     client.loop_start()
     client.on_message = on_message
-    '''client = mqtt.Client()
-    client.username_pw_set("hivemq.webclient.1677564701557", "0URF1yk>VCp@29B&#uoc")
-    client.connect("1d88cb8028ff4e63849381a17a5b4d35.s2.eu.hivemq.cloud", 8883, 10)
-    client.subscribe("weatherwflexp.json", 0)
-    print(Fore.GREEN+"Successfully subscribed to MQTT server"+Style.RESET_ALL)
-    
-    client.loop_start()
-    client.on_message = on_message'''
-   
-    
-    
+
 except:
     print(Fore.RED+"Error connecting to MQTT Broker")
     print("Please check the MQTT Broker and try again"+Style.RESET_ALL)
     #exit()
 
-#store past 5 second values of fn.clean(jsondata) and an api to send it
-
-
-    
 #chuma 
 
 def dailychart(request):

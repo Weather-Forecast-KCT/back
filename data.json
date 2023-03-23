@@ -1,13 +1,13 @@
 {
-    "tempin": 29.5,
-    "tempout": 31.3,
-    "humidity": 22.0,
-    "windspeed": 3.0,
-    "winddir": 103.0,
-    "rainrate": 0.0,
-    "dew": 45.0,
+    "tempin": 32.2,
+    "tempout": 27.3,
+    "humidity": 71.0,
+    "windspeed": 0.0,
+    "winddir": 285.0,
+    "rainrate": 1.12598,
+    "dew": 71.0,
     "uv": 0,
     "heat": 86.0,
-    "icon": "01d",
-    "desc": "clear sky"
+    "icon": "09d",
+    "desc": "shower rain"
 }
