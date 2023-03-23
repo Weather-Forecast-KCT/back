@@ -89,3 +89,4 @@ def dailychart(request):
     ]}
     return JsonResponse(chartdata,safe=True)#change safe = True if the data is a dictionary
     
+#nandees forever
