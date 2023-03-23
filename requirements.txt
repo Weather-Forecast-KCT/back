@@ -4,3 +4,4 @@ djangorestframework==3.14.0
 colorama
 django-cors-headers
 apscheduler
+psycopg2
