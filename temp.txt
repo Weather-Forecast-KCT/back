@@ -1,0 +1,2 @@
+Public IP address/DNS name label
+20.48.224.19/weather.canadacentral.cloudapp.azure.com
