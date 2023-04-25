@@ -1,2 +1,20 @@
 Public IP address/DNS name label
 20.48.224.19/weather.canadacentral.cloudapp.azure.com
+
+
+"start": "node server.js --port 8080"
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.webServer>
+    <rewrite>
+      <rules>
+        <rule name="ReverseProxyInboundRule1" stopProcessing="true">
+          <match url="(.*)" />
+          <action type="Rewrite" url="http://localhost:8080/{R:1}" />
+        </rule>
+      </rules>
+    </rewrite>
+  </system.webServer>
+</configuration>
