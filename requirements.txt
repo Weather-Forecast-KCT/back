@@ -5,3 +5,4 @@ colorama
 django-cors-headers
 apscheduler
 gunicorn
+psycopg2
