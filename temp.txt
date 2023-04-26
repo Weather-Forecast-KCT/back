@@ -23,32 +23,44 @@ CREATE TABLE Updates (
 new.py
 
 import psycopg2
-import random
+import datetime
 import time
 
-# Connect to the database
-conn = psycopg2.connect(database="mydatabase", user="postgres", password="mypassword", host="localhost", port="5432")
+# Connect to the PostgreSQL database
+conn = psycopg2.connect(
+    host="localhost",
+    database="your_database_name",
+    user="your_username",
+    password="your_password"
+)
+
+# Open a cursor to perform database operations
 cur = conn.cursor()
 
-# Main loop
-while True:
-    # Generate random weather data
-    date = time.strftime("%Y-%m-%d")
-    temp_inside = round(random.uniform(18, 24), 1)
-    temp_outside = round(random.uniform(15, 20), 1)
-    humidity = round(random.uniform(50, 80), 1)
-    rain_rate = round(random.uniform(0, 5), 1)
-    uv_index = round(random.uniform(0, 10), 1)
-    wind_speed = round(random.uniform(0, 20), 1)
-    barometer = round(random.uniform(1000, 1015), 1)
+# Generate and insert weather data for each hour of the three days
+for i in range(3):
+    for hour in range(24):
+        # Generate a timestamp for the current hour
+        timestamp = datetime.datetime(2023, 4, i + 1, hour, 0, 0).strftime("%Y-%m-%d %H:%M:%S")
 
-    # Insert the data into the Weather table
-    cur.execute("INSERT INTO Weather (Date, TemperatureInside, TemperatureOutside, Humidity, RainRate, UVIndex, WindSpeed, Barometer) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (date, temp_inside, temp_outside, humidity, rain_rate, uv_index, wind_speed, barometer))
-    conn.commit()
+        # Generate some random weather data
+        temp_inside = 20.0 + i + hour / 10.0
+        temp_outside = 15.0 + i + hour / 10.0
+        humidity = 50.0 + i + hour / 10.0
+        rain_rate = i + hour / 10.0
+        uv_index = i + hour / 10.0
+        wind_speed = 5.0 + i + hour / 10.0
+        barometer = 1000.0 + i + hour / 10.0
 
-    # Get the ID of the new weather entry
-    cur.execute("SELECT LASTVAL()")
-    weather_id = cur.fetchone()[0]
+        # Insert the data into the Weather table
+        cur.execute("INSERT INTO Weather (DateTime, TemperatureInside, TemperatureOutside, Humidity, RainRate, UVIndex, WindSpeed, Barometer) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (timestamp, temp_inside, temp_outside, humidity, rain_rate, uv_index, wind_speed, barometer))
 
-    # Insert the update into the Updates table
-    cur.execute("INSERT INTO
+        # Commit the transaction
+        conn.commit()
+
+        # Wait for 5 seconds before inserting the next data point
+        time.sleep(5)
+
+# Close the cursor and database connection
+cur.close()
+conn.close()
