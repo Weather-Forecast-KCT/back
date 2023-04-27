@@ -16,7 +16,8 @@ past1min = {}
 
 #API function
 def api(request):
-    return JsonResponse(fn.clean(jsondata),safe=True)#change safe = True if the data is a dictionary
+    jsondata={"tempin": 29.0, "tempout": 34.3, "humidity": 40, "windspeed": 6, "winddir": 50, "rainrate": 0.0, "dew": 0, "uv": 0, "heat": 0, "icon": "01n", "desc": "clear sky"}
+    return JsonResponse(jsondata,safe=True)#change safe = True if the data is a dictionary
 
 #live data function
 def live(request):
