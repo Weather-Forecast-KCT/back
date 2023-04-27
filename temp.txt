@@ -1,6 +1,6 @@
 Public IP address/DNS name label
 20.48.224.19/weather.canadacentral.cloudapp.azure.com
-
+https://kct-weather-api.azurewebsites.net/process/api
 
 CREATE TABLE Weather (
    Id SERIAL PRIMARY KEY,
